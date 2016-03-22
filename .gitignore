@@ -1,0 +1,27 @@
+bin/
+.DS_Store
+*.jar
+!lib/**/*.jar
+
+# Vim
+*.swp
+*.swo
+
+# Python
+*.pyc
+
+# Node
+node_modules/
+npm-debug.log
+**/module.js
+
+# SQLite DB
+tmp/
+
+# Uploads directory
+uploads/*
+!uploads/.gitkeep
+
+# Emacs
+\#*\#
+.\#*
