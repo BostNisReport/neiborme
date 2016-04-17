@@ -5,11 +5,10 @@ from flask import (
     g,
     json,
     render_template,
-    send_from_directory,
+    send_from_directory
 )
 from flask.ext.assets import Environment, Bundle
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask_admin import Admin
 from flask.ext.login import (
     current_user,
     LoginManager,
@@ -20,7 +19,6 @@ from flask.ext.bcrypt import Bcrypt
 from functools import wraps
 
 app = Flask(__name__)
-admin = Admin(app, name='NeighborMeAdmin', template_mode='bootstrap3')
 
 # Config
 config = app.config
@@ -40,73 +38,10 @@ assets.register('scss_all', scss)
 # DB
 db = SQLAlchemy(app)
 
-from flask_admin.contrib import sqla
-from flask.ext.login import UserMixin
-from datetime import datetime
-from flask_admin.contrib.sqla import ModelView
-"""
-class Userinfo(db.Model, UserMixin):
-
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.Unicode(80))
-    last_name = db.Column(db.Unicode(80))
-    gender = db.Column(db.String(20))
-    birthday = db.Column(db.Date)
-    created_at = db.Column(db.DateTime, default=datetime.now)
-    updated_at = db.Column(db.DateTime, onupdate=datetime.now)
-    facebook_id = db.Column(db.Integer, unique=True)
-    email = db.Column(db.String(254), unique=True)
-    password_hash = db.Column(db.Unicode(60))
-
-    zipcode = db.Column(db.String(10))
-    phone_number = db.Column(db.String(40))
-    signup_completed = db.Column(db.Boolean, default=False)
-
-    skills_other = db.Column(db.Unicode(200))
-    about_me = db.Column(db.Unicode(200))
-    help_reason = db.Column(db.Unicode(200))
-
-
-    def __init__(self, first_name=None, last_name=None,
-            gender=None, birthday=None, facebook_id=None,
-            email=None, password=None):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.gender = gender
-        self.birthday = birthday
-        self.facebook_id = facebook_id
-        self.email = email
-        if password is not None:
-            self.password_hash = bcrypt.generate_password_hash(password)
-
-
-#admin
-class UserInfo(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-
-    key = db.Column(db.String(64), nullable=False)
-    value = db.Column(db.String(64))
-
-    user_id = db.Column(db.Integer(), db.ForeignKey(Userinfo.id))
-    user = db.relationship(Userinfo, backref='info')
-
-    def __unicode__(self):
-        return '%s - %s' % (self.key, self.value)
-
-# Customized User model admin
-class UserAdmin(sqla.ModelView):
-    inline_models = (UserInfo,)
-
-admin.add_view(UserAdmin(Userinfo, db.session))
-"""
-
 # Bcrypt
 bcrypt = Bcrypt(app)
 
 from app.models import User, Skill
-
-#admin
-admin.add_view(ModelView(User, db.session))
 
 @login_manager.user_loader
 def load_user(user_id):

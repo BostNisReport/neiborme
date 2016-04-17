@@ -480,10 +480,9 @@ function addMessagingChannel(isGroup, channelMemberList, targetChannel) {
   sendbird.getMemberList(targetChannel["channel_url"], {
     "successFunc": function successFunc(data) {
       $.each(data['members'], function (index, member) {
-        alert("Member name      " + member['nickname']);
         if (member['nickname'] != nickname) {
 
-          $('#helpuserinfo').append('<div class="text-center user-image-padding" onclick="joinMessagingChannel(\'' + targetChannel["channel_url"] + '\')"' + '     data-channel-url="' + targetChannel["channel_url"] + '"' + '>' + '<img class="browse-user-image" src="' + member['picture'] + '"' + 'height="110" width="110"' + '/>' + '<h4>' + member['nickname'] + '</h4>' + '</div>');
+          $('#helpuserinfo').append('<div class="text-center user-image-padding" onclick="joinMessagingChannel(\'' + targetChannel["channel_url"] + '\')"' + '     data-channel-url="' + targetChannel["channel_url"] + '"' + '>' + '<img class="browse-user-image" src="' + member['picture'] + '"' + 'height="80" width="80"' + '/>' + '<h4>' + member['nickname'] + '</h4>' + '</div>');
         }
       });
     },
@@ -921,22 +920,9 @@ function loadMoreChatMessage(func) {
 function messageList(obj) {
   var msgList = '';
   if (isCurrentUser(obj['user']['guest_id'])) {
-    msgList += '' + '<div class="col-xs-2">' + '</div>' + '<div class="col-xs-8">' + '<label class="form-control textarea-req-detail">' + '</label>' + convertLinkMessage(obj['message']) + '</div>' + '<div class="col-xs-2">' + '<img class="browse-user-image" src="' + obj['user']['image'] + '"' + 'height="45" width="45" >' + '</img>' + '</div>';
+    msgList += '' + '<div class="row" style="margin-left:210px;">' + '<div class="col-xs-8">' + '<label class="chat-background-gray">' + convertLinkMessage(obj['message']) + '</label>' + '</div>' + '<div style="float:left">' + '<img class="browse-user-image chat-user-image" src="' + obj['user']['image'] + '">' + '</img>' + '</div>' + '</div>';
   } else {
-    msgList += '' + '<div class="col-xs-2">' + '<img class="browse-user-image" src="' + obj['user']['image'] + '"' + 'height="45" width="45" >' + '</img>' + '</div>' + '<div class="col-xs-8">' + '<label class="form-control offer-detail">' + '</label>' + convertLinkMessage(obj['message']) + '</div>' + '<div class="col-xs-2">' + '</div>';
-    if (!document.hasFocus()) {
-      notifyMessage(obj['message']);
-    }
-  }
-  return msgList;
-}
-
-function fileMessageList(obj) {
-  var msgList = '';
-  if (isCurrentUser(obj['user']['guest_id'])) {
-    msgList += '' + '<div class="chat-canvas__list">' + '  <label class="chat-canvas__list-name chat-canvas__list-name__user">' + nameInjectionCheck(obj['user']['name']) + '  </label>' + '  <label class="chat-canvas__list-separator">:</label>' + '  <label class="chat-canvas__list-text">' + '    <label class="chat-canvas__list-text-file">FILE</label>' + '    <a href="' + obj['url'] + '" target="_blank">' + obj['name'] + '</a>' + '  </label>' + '</div>';
-  } else {
-    msgList += '' + '<div class="chat-canvas__list">' + '  <label class="chat-canvas__list-name">' + nameInjectionCheck(obj['user']['name']) + '  </label>' + '  <label class="chat-canvas__list-separator">:</label>' + '  <label class="chat-canvas__list-text">' + '    <label class="chat-canvas__list-text-file">FILE</label>' + '    <a href="' + obj['url'] + '" target="_blank">' + obj['name'] + '</a>' + '  </label>' + '</div>';
+    msgList += '' + '<div class="row" style="margin-left:210px;">' + '<div style="float:left">' + '<img class="browse-user-image chat-user-image" src="' + obj['user']['image'] + '">' + '</img>' + '</div>' + '<div class="col-xs-8">' + '<label class="chat-background-pink">' + convertLinkMessage(obj['message']) + '</label>' + '</div>' + '</div>';
     if (!document.hasFocus()) {
       notifyMessage(obj['message']);
     }
@@ -2083,9 +2069,9 @@ function loadMoreChatMessage(func) {
 function messageList(obj) {
   var msgList = '';
   if (isCurrentUser(obj['user']['guest_id'])) {
-    msgList += '' + '<div class="col-xs-2">' + '</div>' + '<div class="col-xs-8">' + '<label class="form-control textarea-req-detail">' + '</label>' + convertLinkMessage(obj['message']) + '</div>' + '<div class="col-xs-2">' + '<img class="browse-user-image" src="' + obj['user']['image'] + '"' + 'height="45" width="45" >' + '</img>' + '</div>';
+    msgList += '' + '<div class="row" style="margin-left:210px;">' + '<div class="col-xs-8">' + '<label class="chat-background-gray">' + convertLinkMessage(obj['message']) + '</label>' + '</div>' + '<div style="float:left">' + '<img class="browse-user-image chat-user-image" src="' + obj['user']['image'] + '">' + '</img>' + '</div>' + '</div>';
   } else {
-    msgList += '' + '<div class="col-xs-2">' + '<img class="browse-user-image" src="' + obj['user']['image'] + '"' + 'height="45" width="45" >' + '</img>' + '</div>' + '<div class="col-xs-8">' + '<label class="form-control offer-detail">' + '</label>' + convertLinkMessage(obj['message']) + '</div>' + '<div class="col-xs-2">' + '</div>';
+    msgList += '' + '<div class="row" style="margin-left:210px;">' + '<div style="float:left">' + '<img class="browse-user-image chat-user-image" src="' + obj['user']['image'] + '">' + '</img>' + '</div>' + '<div class="col-xs-8">' + '<label class="chat-background-pink">' + convertLinkMessage(obj['message']) + '</label>' + '</div>' + '</div>';
     if (!document.hasFocus()) {
       notifyMessage(obj['message']);
     }
