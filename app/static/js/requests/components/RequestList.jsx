@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import Request from '../../shared/components/Request.jsx';
 import RequestSmall from '../../shared/components/RequestSmall.jsx';
 
 const propTypes = {
@@ -17,7 +16,7 @@ export default class RequestList extends Component {
         {this.props.requests.map((request, i) => {
           return (
             <div className="request">
-              <Request
+              <RequestSmall
                   key={`request_${i}`}
                   className="visible-md-block visible-lg-block"
                   amount={request.amount}
@@ -29,19 +28,7 @@ export default class RequestList extends Component {
                   location={request.city}
                   title={request.title}
                   userId={request.userId}
-              />
-              <RequestSmall
-                  key={`request_small_${i}`}
-                  className="visible-xs-block visible-sm-block"
-                  amount={request.amount}
-                  date={request.date}
-                  details={request.details}
-                  firstName={request.firstName}
-                  hideOfferHelp
-                  imgPath={request.imgPath}
-                  location={request.city}
-                  title={request.title}
-                  userId={request.userId}
+                  requestId={request.id}
               />
             </div>
           );

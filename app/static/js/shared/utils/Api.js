@@ -23,6 +23,14 @@ export default {
     );
   },
 
+  AddOffer(requestId, params){
+    return Promise.resolve($.ajax(`${API_PREFIX}/requests/${requestId}`, {
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(params),
+      method: 'POST'
+    }));
+  },
+
   updateProfile(userId, params) {
     return Promise.resolve($.ajax(`${API_PREFIX}/users/${userId}`, {
       contentType: 'application/json; charset=utf-8',

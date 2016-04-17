@@ -15,6 +15,7 @@
     <title>NeighborMe - Share your skills &amp; talents with other women nearby</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/sample-chat.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/react-datepicker.min.css') }}">
     {% assets "scss_all" %}
     <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
@@ -29,6 +30,7 @@
   <body>
     <script src="{{ url_for('static', filename='js/lib/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/lib/fb_login.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/SendBird.min.js') }}"></script>
 
     <nav class="navbar neighborme-nav">
       <div class="container">

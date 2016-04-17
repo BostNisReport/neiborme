@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SubNav from '../../navigation/components/SubNav.jsx';
 import Request from '../../shared/components/Request.jsx';
-import RequestSmall from '../../shared/components/RequestSmall.jsx';
 
 export default class Browse extends Component {
   render() {
@@ -18,7 +17,6 @@ export default class Browse extends Component {
               {this.props.requests.map((request, i) => {
                 return (
                   <div className="request">
-
                     <Request
                         key={`request_${i}`}
                         className="visible-md-block visible-lg-block"
@@ -26,20 +24,6 @@ export default class Browse extends Component {
                         date={request.date}
                         details={request.details}
                         firstName={request.firstName}
-                        imgPath={request.imgPath}
-                        location={request.city}
-                        title={request.title}
-                        userId={request.userId}
-                        requestId={request.id}
-                    />
-                    <RequestSmall
-                        key={`request_small_${i}`}
-                        className="visible-xs-block visible-sm-block"
-                        amount={request.amount}
-                        date={request.date}
-                        details={request.details}
-                        firstName={request.firstName}
-                        hideOfferHelp
                         imgPath={request.imgPath}
                         location={request.city}
                         title={request.title}

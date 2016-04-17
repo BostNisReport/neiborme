@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import SubNav from '../../navigation/components/SubNav.jsx';
 import Makeoffer from '../../shared/components/Makeoffer.jsx';
-//import Offer from '../../shared/components/Offer.jsx';
-//import OfferSmall from '../../shared/components/OfferSmall.jsx';
 
 export default class OfferHelp extends Component {
   render() {
     return (
       <div>
-        <SubNav activeIndex={2} />
+        <SubNav activeIndex={0} />
         <div className="row row-gray">
           <div className="container">
             <div className="row row-houses-bg">
@@ -30,7 +28,7 @@ export default class OfferHelp extends Component {
                     userId={this.props.requestinfo.userId}
                     requestId={this.props.requestinfo.id}
                     myoffer={this.props.requestinfo.myoffer}
-                    helpuser_Id={this.props.requestinfo.helpuser_id}
+                    helpuser_id={this.props.requestinfo.helpuserId}
                 />
               </div>
             </div>

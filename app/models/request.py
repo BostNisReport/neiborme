@@ -41,6 +41,10 @@ class Request(db.Model):
         pass
 
     def to_dict(self):
+        if self.lmessage_at is None:
+            lmessagetime = None
+        else:
+            lmessagetime = self.lmessage_at.strftime('%I:%M %p')
         return {
             'id': self.id,
             'amount': int(self.amount),
@@ -53,13 +57,14 @@ class Request(db.Model):
             'title': self.title,
             'user_id': self.user_id,
             'zipcode': self.zipcode,
-            'myoffer': self.myoffer,
-            'offerstatus': self.offer_status,
             'helpuser_id': self.helpuser_id,
-            'lmessagetime': self.lmessage_at.strftime('%I:%M %p')
         }
 
     def to_json(self):
+        if self.lmessage_at is None:
+            lmessagetime = None
+        else:
+            lmessagetime = self.lmessage_at.strftime('%I:%M %p')
         return json.dumps({
             'id': self.id,
             'amount': self.amount,
@@ -72,10 +77,7 @@ class Request(db.Model):
             'title': self.title,
             'user_id': self.user_id,
             'zipcode': self.zipcode,
-            'myoffer': self.myoffer,
-            'offerstatus': self.offer_status,
             'helpuser_id': self.helpuser_id,
-            'lmessagetime': self.lmessage_at.strftime('%I:%M %p')
             }, cls=DecimalEncoder)
 
     def __repr__(self):

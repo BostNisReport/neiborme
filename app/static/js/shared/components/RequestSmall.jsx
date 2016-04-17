@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
+import currentUser from '../../shared/models/User';
 
 const propTypes = {
   amount: PropTypes.number,
@@ -21,41 +22,54 @@ export default class RequestSmall extends Component {
   }
 
   render() {
+    var offerHelpContainer;
+    if (!this.props.hideOfferHelp) {
+      offerHelpContainer = (
+        <div className="text-center button-container">
+          <a href={`/dashboard/offerhelp/${this.props.requestId}`} className="btn btn-primary btn-lg btn-block">
+            Offer Help
+          </a>
+        </div>
+      );
+    }
+
     return (
       <div className={cx(['panel', 'panel-default', this.props.className])}>
-        <div className="panel-body panel-body-request-small">
-          <div
-              className="request-small-header clearfix"
-          >
-            <div className="pull-left request-small-image">
+        <div className="panel-body panel-body-browse">
+          <div className="row">
+            <div className="col-xs-2 text-center">
               <a href={`/users/${this.props.userId}`}>
                 <img
-                    className="browse-user-image image-small pull-left"
-                    src={this.props.imgPath}
-                    height={60}
-                    width={60}
+                  className="browse-user-image"
+                  src={this.props.imgPath}
+                  height={110}
+                  width={110}
                 />
               </a>
+              <a href={`/users/${this.props.userId}`}>
+                <h4>{this.props.firstName}</h4>
+              </a>
             </div>
-            <div>
-              <span className="request-small-title">{this.props.title}</span>
+            <input type="hidden" id="myname" name="myname" value={currentUser.firstName}/>
+            <input type="hidden" id="mypictureUrl" name="mypictureUrl" value={currentUser.profilePictureUrl}/>
+            <div className="col-xs-8">
+              <a href={`/dashboard/chatroom/${this.props.requestId}`}>
+                <h3>{this.props.title}</h3>
+              </a>
               <p>{this.props.details}</p>
-              <p>{this.props.location}</p>
+              <div className="browse-location">{this.props.location}</div>
+            </div>
+            <div className="col-xs-2">
+              <div>
+                <span className="pull-left text-success">${this.props.amount}</span>
+                <span className="pull-right">{this.props.date}</span>
+              </div>
+              {offerHelpContainer}
             </div>
           </div>
-          <div className="clearfix request-small-footer">
-            <span className="pull-left text-success">${this.props.amount}</span>
-            <button
-                className="btn btn-primary btn-md pull-right"
-                onClick={this.sendEmail}
-            >
-              Offer Help
-            </button>
-          </div>
-          <span className="text-gray">{this.props.date}</span>
         </div>
       </div>
-    );
+    )
   }
 }
 

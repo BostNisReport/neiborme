@@ -11,7 +11,7 @@ from flask import (
 )
 from flask.ext.login import current_user, login_required
 from app import db, config
-from app.models import Picture, Request, User
+from app.models import Picture, Request, User, Offer
 
 api = Blueprint('api', __name__)
 
@@ -43,14 +43,32 @@ def add_requests():
         request_for_help.title = request.json['title']
     if 'zipcode' in request.json:
         request_for_help.zipcode = request.json['zipcode']
+
+    db.session.add(request_for_help)
+    db.session.commit()
+
+    return request_for_help.to_json()
+
+@api.route('/requests/<int:request_id>', methods=['POST'])
+@login_required
+def add_offer(request_id):
+    import pdb
+    pdb.set_trace()
+    requestobj = Request.query.filter_by(id=request_id).first()
+
+    request_for_help = Offer()
+    request_for_help.request = requestobj   
+
     if 'lmessage_at' in request.json:
-        request_for_help.zipcode = request.json['lmessage_at']
-    if 'myoffer' in request.json:
-        request_for_help.zipcode = request.json['myoffer']
+        request_for_help.lmessage_at = request.json['lmessage_at']
+    if 'offer' in request.json:
+        request_for_help.offer = request.json['offer']
     if 'offer_status' in request.json:
-        request_for_help.zipcode = request.json['offer_status']
+        request_for_help.offer_status = request.json['offer_status']
     if 'helpuser_id' in request.json:
-        request_for_help.zipcode = request.json['helpuser_id']
+        request_for_help.id = request.json['helpuser_id']
+    if 'request_id' in request.json:
+        request_for_help.request_id = request.json['request_id']
 
     db.session.add(request_for_help)
     db.session.commit()

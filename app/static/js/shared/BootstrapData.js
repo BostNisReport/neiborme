@@ -9,6 +9,7 @@ function deepCamelCaseKeys(obj) {
     let keys = Object.keys(obj);
     for (let i = 0; i < keys.length; i++) {
       let key = keys[i];
+
       if (camelCase(key) !== key) {
         obj[camelCase(key)] = obj[key];
         delete obj[key];

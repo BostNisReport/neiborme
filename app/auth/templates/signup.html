@@ -13,7 +13,7 @@
   <div class="container">
     {% if error or signup_form.errors %}
     <div class="alert alert-danger fade in" role="alert">
-      <strong>{{error}}111111111111111</strong>
+      <strong>{{error}}</strong>
       {% if signup_form.errors %}
       <ul>
         {% for field_name, field_errors in signup_form.errors|dictsort if field_errors %}

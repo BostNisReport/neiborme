@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import connectToStores from 'alt/utils/connectToStores';
 
 import Modal from '../../shared/components/Modal.jsx';
+import CurrentUser from '../../shared/models/User';
 import SubNav from '../../navigation/components/SubNav.jsx';
 import RequestsStore from '../stores/RequestsStore';
 import RequestsActions from '../actions/RequestsActions';
@@ -41,10 +42,10 @@ export default class Requests extends Component {
       <div>
         <SubNav activeIndex={1} />
         <div className="row row-gray">
-          <div className="container">
+          <div className="container"> 
             <div className="row row-houses-bg">
               {requestList}
-              <div className="text-center space-top-8 space-8">
+              <div className="text-center space-top-4 space-4">
                 <button
                   className="btn btn-primary btn-lg"
                   onClick={this.handleClickOpen}

@@ -18,6 +18,16 @@ class RequestsActions {
       });
     };
   }
+
+  addOffer({requestId, params}) {
+    return (dispatch) => {
+      Api.AddOffer(requestId, params).then(response => {
+        dispatch({response});
+      }, xhrObj => {
+        dispatch({xhr: xhrObj});
+      });
+    };
+  }
 }
 
 export default alt.createActions(RequestsActions);

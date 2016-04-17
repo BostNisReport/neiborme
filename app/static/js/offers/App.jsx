@@ -4,6 +4,6 @@ import Offers from './components/Offers.jsx';
 import BootstrapData from '../shared/BootstrapData';
 
 ReactDOM.render(
-  <Offers requests={BootstrapData.getJSON('offers')} />,
+  <Offers request={BootstrapData.getJSON('offers')}/>,
   document.getElementById('offers')
 );

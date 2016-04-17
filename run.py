@@ -6,4 +6,4 @@ handler.setFormatter(logging.Formatter(
     '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
 handler.setLevel(logging.INFO)
 app.logger.addHandler(handler)
-app.run()
+app.run(host="192.168.1.198")
